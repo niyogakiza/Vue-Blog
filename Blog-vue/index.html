@@ -16,12 +16,14 @@
 <div id='app' class="container">
     <i v-if='show' v-on:click='show=!show' title='Edit' class="material-icons" aria-hidden="true">create</i>
     <i v-if='!show' v-on:click='save' title='Save' class="material-icons" aria-hidden="true">save</i>
-    <div v-if='show' id='reading-mode'>
+    
+    <transition name="fade" mode="out-in">
+    <div v-if='show' id='reading-mode' key='j'>
         <reading-comp :title='title' :author='author' :date='date' :category='category' :theme_color='category_theme_color[category]'><!--no dot here-->
             <div id='article-area'>{{article}}</div>
         </reading-comp>
     </div>
-    <div v-if='!show' id='editing-mode' class="container">
+    <div v-if='!show' id='editing-mode' class="container" key='l'>
         <div v-bind:class='{warning:!remain}'><label>Article Title: </label><input v-model='title' v-on:input='check'/><span>{{remain}}/{{limit}}</span></div>
         <div><label>Author Name: </label><input v-model='author'/></div>
         <ul>
@@ -32,6 +34,7 @@
         </ul>
         <div><label>Article: </label><textarea v-model='article'></textarea></div>
     </div>
+        </transition>
 </div>
 <template id='reading-temp'>
     <div>
