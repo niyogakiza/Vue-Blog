@@ -1,0 +1,41 @@
+h1.h2,h3,h4,h5,h6,p,span,li,ul,ol,input{
+    margin:0;
+    padding:0;
+    word-break:break-all;
+    list-style:none;
+}
+.button-size{
+    font-size:36px;
+}
+h1{
+    text-align:center;
+}
+#line{
+    height:1px;
+}
+#category{
+    color:white;
+    text-align:right;
+    padding-right:5px;
+    background:yellow;
+    font-size:16px;
+    line-height:22px;
+    font-family:helvetica;
+    font-weight:bold;
+}
+#article-area{
+    padding-top:6px;
+    padding-bottom:6px;
+}
+#article-info{
+    text-align:right;
+    font-size:12px;
+    font-style:italic;
+    font-family:helvetica;
+    color:gray;
+    line-height:18px;
+}
+.warning{
+    border:1px solid red;
+    color:red;
+}

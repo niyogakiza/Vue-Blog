@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width,initial-scale=1.0'>
+    <link rel="stylesheet" href="css/fontawesome.css">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Title</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+</head>
+<body>
+<div id='app' class="container">
+    <i v-if='show' v-on:click='show=!show' title='Edit' class="material-icons" aria-hidden="true">create</i>
+    <i v-if='!show' v-on:click='save' title='Save' class="material-icons" aria-hidden="true">save</i>
+    <div v-if='show' id='reading-mode'>
+        <reading-comp :title='title' :author='author' :date='date' :category='category' :theme_color='category_theme_color[category]'><!--no dot here-->
+            <div id='article-area'>{{article}}</div>
+        </reading-comp>
+    </div>
+    <div v-if='!show' id='editing-mode' class="container">
+        <div v-bind:class='{warning:!remain}'><label>Article Title: </label><input v-model='title' v-on:input='check'/><span>{{remain}}/{{limit}}</span></div>
+        <div><label>Author Name: </label><input v-model='author'/></div>
+        <ul>
+            <li v-for='element in category_list'>
+                <label>{{element}}</label>
+                <input type='radio'  v-model='category'  v-bind:value='element'/>
+            </li>
+        </ul>
+        <div><label>Article: </label><textarea v-model='article'></textarea></div>
+    </div>
+</div>
+<template id='reading-temp'>
+    <div>
+        <h1>{{title}}</h1><!--title is a prop-->
+        <div id='line' v-bind:style='{background:theme_color}'></div>
+        <slot></slot><!--article displayed here...-->
+        <div id='line' v-bind:style='{background:theme_color}'></div>
+        <p id='article-info'>Created by <span>{{author}}</span> and last edited at <span>{{date}}</span></p>
+        <div id='category' v-bind:style='{background:theme_color}'><span>{{category}}</span></div>
+        <!--author, date, category are props-->
+    </div>
+</template>
+
+
+
+
+
+
+
+
+<script src="vue.js"></script>
+</body>
+</html>
